@@ -24,4 +24,4 @@ ContextCache is a local-first, zero-knowledge memory system that ingests documen
 ## Links
 
 - Website: [thecontextcache.bsky.social](https://thecontextcache.bsky.social)
-- Email: contact@thecontextcache.com
+- Email: thecontextcache@gmail.com
