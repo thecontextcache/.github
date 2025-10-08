@@ -19,10 +19,9 @@ It is designed for **researchers, students, and power users** who need **traceab
 
 ---
 
-## 🚀 Current Status  
-- ✅ **Phase 1 Complete** → Core models, crypto utilities, storage adapters  
-- 🚧 **Phase 2 In Progress** → MCP servers (docs, extractor, memory, audit, policy-gate)  
-- 📅 Upcoming → Frontend integration (Dashboard, Graph, Explain panel), test suites (pytest, Schemathesis, Playwright, k6), Mintlify docs  
+## 🚀 Current Status   
+- 🚧 **Phase 6 In Progress** 
+
 
 ---
 
