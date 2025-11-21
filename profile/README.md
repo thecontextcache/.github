@@ -20,7 +20,7 @@ It is designed for **researchers, students, and power users** who need **traceab
 ---
 
 ## 🚀 Current Status   
-- 🚧 **Phase 6 In Progress** 
+- 🚧 **Alpha Phase  In Progress** 
 
 
 ---
@@ -33,7 +33,7 @@ It is designed for **researchers, students, and power users** who need **traceab
 ## 🌐 Links  
 - **Website** → [thecontextcache.com](https://thecontextcache.com)  
 - **Social** → [Bluesky](https://thecontextcache.bsky.social)  
-- **Email** → thecontextcache@gmail.com  
+- **Email** → support@thecontextcache.com  
 
 ---
 
