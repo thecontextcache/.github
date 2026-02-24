@@ -1,32 +1,23 @@
 # thecontextcache™  
-**Privacy-first, local-first memory engine for AI research.**  
+**ContextCache is a shared project memory layer for teams using different AI tools.**  
 
 ---
 
 ## 🔎 What We’re Building  
-**thecontextcache** is a **local-first, zero-knowledge memory engine** that ingests documents, extracts knowledge **quads (subject, predicate, object, context)**, and returns explainable answers with **citations and cryptographic audit trails**.  
+**thecontextcache** 
 
-It is designed for **researchers, students, and power users** who need **traceable, privacy-preserving AI answers** without relying on centralized SaaS platforms.  
+Teams today face a fragmented AI landscape:
 
----
+**Tool fragmentation** — Different team members use different AI tools (ChatGPT, Claude, Ollama, Copilot). Insights discovered in one tool don't transfer to another.
 
-## 🛠 Tech Stack  
-- **Backend** → Python 3.13 · FastAPI · PostgreSQL (pgvector)  
-- **Frontend** → Next.js (App Router) · TypeScript · Tailwind CSS · Cytoscape.js  
-- **Security** → XChaCha20-Poly1305 · Ed25519 signatures · Argon2id KDF · BLAKE3 hash chains  
-- **Infra** → Cloudflare Pages (frontend) · Google Cloud Run (backend) · Neon Postgres · Upstash Redis  
-- **Docs** → Mintlify  
+**Scattered context** — Project knowledge lives in dozens of chat threads, each tool siloed with no shared memory.
 
----
+**Context window limits** — Every model has a finite context window. Long projects exceed it, and the AI "forgets" earlier decisions.
+
+**No intentional curation** — Most tools auto-save everything, flooding memory with noise. High-signal insights get buried.
 
 ## 🚀 Current Status   
 - 🚧 **Alpha Phase  In Progress** 
-
-
----
-
-## 📂 Repositories  
-- **[contextcache](https://github.com/thecontextcache/contextcache)** → Main project repository  
 
 ---
 
@@ -34,11 +25,6 @@ It is designed for **researchers, students, and power users** who need **traceab
 - **Website** → [thecontextcache.com](https://thecontextcache.com)  
 - **Social** → [Bluesky](https://thecontextcache.bsky.social)  
 - **Email** → support@thecontextcache.com  
-
----
-
-## 🤝 Contributing  
-We welcome contributions! Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) and join the conversation in [GitHub Discussions](https://github.com/orgs/thecontextcache/discussions).  
 
 ---
 
