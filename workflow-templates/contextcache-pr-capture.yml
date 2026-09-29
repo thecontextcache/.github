@@ -1,0 +1,57 @@
+# ContextCache — capture the decisions behind merged pull requests.
+#
+# Copy to .github/workflows/contextcache-pr-capture.yml in your repository.
+# Setup (repository settings → Secrets and variables → Actions):
+#   secret   CONTEXTCACHE_API_KEY     a member-role key (cck_…) for your org
+#   variable CONTEXTCACHE_PROJECT_ID  the project that should receive the decisions
+#   variable CONTEXTCACHE_ORG_ID      your org id
+#   variable CONTEXTCACHE_BASE_URL    optional, default https://api.thecontextcache.com
+#
+# What it sends: the PR title, description, linked issues, review comments,
+# and the list of changed file paths — never the diff or file contents.
+# The server skips bots, dependency bumps, lockfile-only changes, and PRs with
+# no stated rationale; what passes lands in your ContextCache Inbox for a human
+# to approve. Nothing becomes project memory automatically.
+name: ContextCache PR capture
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  capture:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Send merged PR to ContextCache
+        env:
+          GH_TOKEN: ${{ github.token }}
+          API_KEY: ${{ secrets.CONTEXTCACHE_API_KEY }}
+          PROJECT_ID: ${{ vars.CONTEXTCACHE_PROJECT_ID }}
+          ORG_ID: ${{ vars.CONTEXTCACHE_ORG_ID }}
+          BASE_URL: ${{ vars.CONTEXTCACHE_BASE_URL || 'https://api.thecontextcache.com' }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          if [ -z "${API_KEY}" ] || [ -z "${PROJECT_ID}" ]; then
+            echo "CONTEXTCACHE_API_KEY / CONTEXTCACHE_PROJECT_ID not configured; skipping."; exit 0
+          fi
+          gh api "repos/${REPO}/pulls/${PR}/files" --paginate --jq '[.[].filename]' | jq -s 'add // []' > files.json
+          gh api "repos/${REPO}/pulls/${PR}/reviews" --paginate \
+            --jq '[.[] | {state, body, user: {login: .user.login, type: .user.type}}]' | jq -s 'add // []' > reviews.json
+          jq -n --arg repo "$REPO" \
+            --slurpfile pr <(jq '.pull_request | {merged, merged_at, number, title, body, html_url, merge_commit_sha, user: {login: .user.login, type: .user.type}}' "$GITHUB_EVENT_PATH") \
+            --slurpfile files files.json --slurpfile reviews reviews.json \
+            '{repo: $repo, pull_request: $pr[0], files: $files[0], reviews: $reviews[0]}' > body.json
+          code=$(curl -sS -o resp.json -w '%{http_code}' -X POST "${BASE_URL}/projects/${PROJECT_ID}/ingest/github-pr" \
+            -H "X-API-Key: ${API_KEY}" -H "X-Org-Id: ${ORG_ID}" -H "X-Agent-Name: github-actions" \
+            -H "Idempotency-Key: gh-${REPO//\//-}-pr-${PR}" -H "Content-Type: application/json" \
+            -H "User-Agent: contextcache-github-action/1" --data @body.json)
+          echo "ContextCache responded ${code}: $(cat resp.json)"
+          [ "$code" -lt 400 ] || exit 1

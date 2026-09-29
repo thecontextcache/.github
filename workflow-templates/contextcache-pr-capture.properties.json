@@ -1,0 +1,7 @@
+{
+  "name": "ContextCache PR capture",
+  "description": "Send the reasoning behind merged pull requests (title, description, linked issues, reviews; never code) to your ContextCache Inbox for approval.",
+  "iconName": "contextcache",
+  "categories": ["Automation"],
+  "filePatterns": []
+}

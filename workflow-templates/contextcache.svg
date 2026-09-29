@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 64 64" role="img" aria-label="ContextCache">
+  <title>ContextCache</title>
+  <metadata>
+    <dc:title>ContextCache brand mark</dc:title>
+    <dc:creator>Nikhil Dodda</dc:creator>
+    <dc:rights>Copyright (c) 2026 Nikhil Dodda / TheContextCache. All rights reserved. "ContextCache" and this mark are trademarks of Nikhil Dodda.</dc:rights>
+    <dc:date>2026</dc:date>
+  </metadata>
+  <defs>
+    <linearGradient id="ccAd" x1="14" y1="12" x2="52" y2="54" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <rect x="3" y="3" width="58" height="58" rx="15" fill="#0b1220"/>
+  <path d="M44 17 A21 21 0 1 0 44 47" stroke="url(#ccAd)" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+  <path d="M41.5 25.5 A12 12 0 1 0 41.5 38.5" stroke="url(#ccAd)" stroke-width="6.5" stroke-linecap="round" fill="none" opacity="0.55"/>
+  <circle cx="32" cy="32" r="4.2" fill="#22d3ee"/>
+</svg>
